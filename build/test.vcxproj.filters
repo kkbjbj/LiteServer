@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\test\test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\test\unit_test_base.h" />
+    <ClInclude Include="..\test\test_buffer.h" />
+    <ClInclude Include="..\test\test_timer.h" />
+    <ClInclude Include="..\test\test_object_pool.h" />
+    <ClInclude Include="..\test\test_sock.h" />
+  </ItemGroup>
+</Project>
