@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\engine\db\redis_connector.cpp" />
+    <ClCompile Include="..\engine\db\redis_connector_wrap.cpp" />
+    <ClCompile Include="..\engine\lua\lua_util.cpp" />
     <ClCompile Include="..\engine\net\net_service.cpp" />
     <ClCompile Include="..\engine\net\net_service_epoll.cpp" />
     <ClCompile Include="..\engine\net\net_service_iocp.cpp" />
@@ -30,7 +33,6 @@
     <ClCompile Include="..\engine\net\tcp_connector.cpp" />
     <ClCompile Include="..\engine\net\tcp_listener.cpp" />
     <ClCompile Include="..\engine\net\tcp_session.cpp" />
-    <ClCompile Include="..\engine\net\test.cpp" />
     <ClCompile Include="..\engine\net\udp_listener.cpp" />
     <ClCompile Include="..\engine\thread\thread_base.cpp" />
     <ClCompile Include="..\engine\timer\timer_callback.cpp" />
@@ -39,7 +41,11 @@
     <ClCompile Include="..\engine\util\hashid_gen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\engine\db\redis_connector.h" />
+    <ClInclude Include="..\engine\db\redis_connector_wrap.h" />
     <ClInclude Include="..\engine\engine.h" />
+    <ClInclude Include="..\engine\lua\luawrap.h" />
+    <ClInclude Include="..\engine\lua\lua_util.h" />
     <ClInclude Include="..\engine\net\base_session.h" />
     <ClInclude Include="..\engine\net\net_service.h" />
     <ClInclude Include="..\engine\net\ring_buffer_base.h" />
@@ -117,7 +123,15 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>$(ProjectName)_D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetName>$(ProjectName)_D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TargetName>$(ProjectName)</TargetName>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>
@@ -125,13 +139,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\Visual Leak Detector\include;%(AdditionalIncludeDirectories);$(ProjectDir)../engine</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Visual Leak Detector\include;%(AdditionalIncludeDirectories);$(ProjectDir)../engine;$(ProjectDir)../include;$(ProjectDir)../include/win;</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy  $(TargetDir)$(ProjectName).lib $(ProjectDir)..\lib</Command>
+      <Command>copy  $(TargetDir)$(ProjectName)_D.lib $(ProjectDir)..\lib\win</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -141,10 +156,15 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Visual Leak Detector\include;%(AdditionalIncludeDirectories);$(ProjectDir)../engine;$(ProjectDir)../include;$(ProjectDir)../include/win;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent>
+      <Command>copy  $(TargetDir)$(ProjectName)_D.lib $(ProjectDir)..\lib\win64</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -155,7 +175,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\Visual Leak Detector\include;%(AdditionalIncludeDirectories);$(ProjectDir)../engine</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Visual Leak Detector\include;%(AdditionalIncludeDirectories);$(ProjectDir)../engine;$(ProjectDir)../include;$(ProjectDir)../include/win;</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -163,7 +184,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>copy  $(TargetDir)$(ProjectName).lib $(ProjectDir)..\lib</Command>
+      <Command>copy  $(TargetDir)$(ProjectName).lib $(ProjectDir)..\lib\win</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -175,12 +196,17 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Visual Leak Detector\include;%(AdditionalIncludeDirectories);$(ProjectDir)../engine;$(ProjectDir)../include;$(ProjectDir)../include/win;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PostBuildEvent>
+      <Command>copy  $(TargetDir)$(ProjectName).lib $(ProjectDir)..\lib\win64</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

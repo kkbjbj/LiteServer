@@ -2,7 +2,7 @@
 
 bool Sock::Create(int Family, int Type)
 {
-#ifdef WIN32
+#ifdef _WIN32
 	m_Socket = WSASocket(Family, Type, 0, NULL, 0, WSA_FLAG_OVERLAPPED);
 	if (INVALID_SOCKET == m_Socket) return false;
 
@@ -20,9 +20,9 @@ void Sock::SetSocket(SOCKET Socket)
 
 bool Sock::SetNonBlock()
 {
-#ifndef WIN32
+#ifndef _WIN32
 	if (fcntl(m_Socket, F_SETFL, fcntl(m_Socket, F_GETFL, 0) | O_NONBLOCK) < 0) return false;
-#endif // WIN32
+#endif // _WIN32
 	return true;
 }
 
@@ -80,7 +80,7 @@ int Sock::Send(const char* Data, unsigned int Len)
 			}
 			else
 			{
-				printf("%d Send failed with error: %u\n", m_Socket, GetSockError());
+				printf("%d Send failed with error: %u\n", (int)m_Socket, GetSockError());
 				return -1;
 			}
 		}
@@ -112,7 +112,7 @@ int Sock::SendTo(const char* Data, unsigned int Len, struct sockaddr *PeerAddr)
 			}
 			else
 			{
-				printf("%d SendTo failed with error: %u\n", m_Socket, GetSockError());
+				printf("%d SendTo failed with error: %u\n", (int)m_Socket, GetSockError());
 				return -1;
 			}
 		}
@@ -150,7 +150,7 @@ int Sock::SendTo(const char* Data, unsigned int Len, string IP, int Port)
 			}
 			else
 			{
-				printf("%d SendTo failed with error: %u\n", m_Socket, GetSockError());
+				printf("%d SendTo failed with error: %u\n", (int)m_Socket, GetSockError());
 				return -1;
 			}
 		}

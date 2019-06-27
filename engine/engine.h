@@ -4,6 +4,7 @@
 #include "util/template_object_pool.h"
 #include "util/hashid_gen.h"
 #include "util/cpu_cost_timer.h"
+#include "lua/luawrap.h"
 #include "timer/wheel_timer.h"
 #include "timer/timer_callback.h"
 #include "thread/auto_lock.h"
@@ -15,3 +16,4 @@
 #include "net/tcp_listener.h"
 #include "net/udp_listener.h"
 #include "net/tcp_connector.h"
+#include "db/redis_connector_wrap.h"

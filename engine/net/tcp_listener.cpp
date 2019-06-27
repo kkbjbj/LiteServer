@@ -41,7 +41,7 @@ bool TCPListener::Init()
 
 bool TCPListener::GetFuncAddr()
 {
-#ifdef WIN32
+#ifdef _WIN32
 	GUID GuidAcceptEx = WSAID_ACCEPTEX;
 	GUID GuidGetAcceptExSockAddrs = WSAID_GETACCEPTEXSOCKADDRS;
 

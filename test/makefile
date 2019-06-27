@@ -7,9 +7,9 @@ TARGET	:= test
 
 RM 	= rm -f
 
-INCLUDE += -I../include -I../engine
+INCLUDE += -I../include -I../include/linux -I../engine
 
-LIB += -L../lib -lengine
+LIB += -L../lib -lengine -llua -ldl -lhiredis
 
 SOURCE += $(wildcard *.cpp)
 OBJS_DEF   := $(patsubst %.cpp,%.o,$(SOURCE))

@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef WIN32
+#ifdef _WIN32
 	#include <winsock2.h>
 	#include <mswsock.h>
 	#include <WS2tcpip.h>
@@ -14,14 +14,14 @@
 	#include<errno.h>
 	#include <fcntl.h>
 	#include <unistd.h>
-#endif // WIN32	
+#endif // _WIN32	
 
 #include <string.h>
 #include <stdio.h>
 #include <string>
 	
 
-#ifndef WIN32
+#ifndef _WIN32
 	typedef void *PVOID;
 	typedef uint32_t SOCKET;
 	typedef uint32_t DWORD;

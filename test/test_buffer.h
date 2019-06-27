@@ -18,7 +18,6 @@ public:
 
 	virtual void Run() {
 		char writedata[] = "1234567890";
-		char readdata[16];
 		int j = 0;
 		int times = 0;
 		bool stop = false;
@@ -186,7 +185,7 @@ public:
 		file11.open("testdata", ios::in | ios::binary);
 		file12.open("copydata", ios::in | ios::binary);
 		string compareresult = "YES";
-		for (size_t i = 0; i < fsize; i++)
+		for (int i = 0; i < fsize; i++)
 		{
 			file11.read(curdata, 1);
 			file12.read(&curdata[1], 1);

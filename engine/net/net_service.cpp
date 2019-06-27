@@ -40,7 +40,7 @@ void NetService::InitSession()
 	for (size_t i = 0; i < MAX_SOCK_EVENT; i++)
 	{
 		m_Sessions[i] = NULL;
-		m_queSessionID.push(i + 1);
+		m_queSessionID.push((int)i + 1);
 	}
 }
 

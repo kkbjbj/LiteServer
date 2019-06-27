@@ -13,6 +13,12 @@
     <Filter Include="util">
       <UniqueIdentifier>{5a9f4bf2-98b0-4200-9232-ab191bf34aac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lua">
+      <UniqueIdentifier>{c6f58ac9-5374-4bec-b394-b7b7d7a84f37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="db">
+      <UniqueIdentifier>{a61236f7-c989-4da6-aafe-817d7ac767a0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\util\hashid_gen.cpp">
@@ -60,14 +66,20 @@
     <ClCompile Include="..\engine\net\tcp_session.cpp">
       <Filter>net</Filter>
     </ClCompile>
-    <ClCompile Include="..\engine\net\test.cpp">
-      <Filter>net</Filter>
-    </ClCompile>
     <ClCompile Include="..\engine\net\udp_listener.cpp">
       <Filter>net</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\net\net_service.cpp">
       <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\db\redis_connector.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\db\redis_connector_wrap.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lua_util.cpp">
+      <Filter>lua</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +158,18 @@
     </ClInclude>
     <ClInclude Include="..\engine\net\udp_session.h">
       <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\luawrap.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\db\redis_connector.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\db\redis_connector_wrap.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lua_util.h">
+      <Filter>lua</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

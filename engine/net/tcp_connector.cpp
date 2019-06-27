@@ -41,7 +41,7 @@ bool TCPConnector::Init()
 
 bool TCPConnector::GetFuncAddr()
 {
-#ifdef WIN32
+#ifdef _WIN32
 	DWORD dwBytes = 0;
 	GUID GuidConnectEx = WSAID_CONNECTEX;
 	if (SOCKET_ERROR == WSAIoctl(m_Socket, SIO_GET_EXTENSION_FUNCTION_POINTER,

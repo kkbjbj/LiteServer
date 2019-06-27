@@ -3,6 +3,7 @@
 #include "test_buffer.h"
 #include "test_object_pool.h"
 #include "test_sock.h"
+#include "test_lua.h"
 
 using namespace std;
 
@@ -16,6 +17,9 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+	TestLua testlua;
+	testlua.Run();
+
 	TestSock testsock;
 	testsock.Run();
 
@@ -29,6 +33,7 @@ int main(int argc, char *argv[])
 		AutoCpuCostTimer t;
 		TestBuff testbuff;
 		testbuff.Run();
+
 	}
 		
 #ifdef _WIN32

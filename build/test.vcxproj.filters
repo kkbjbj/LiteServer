@@ -9,5 +9,6 @@
     <ClInclude Include="..\test\test_timer.h" />
     <ClInclude Include="..\test\test_object_pool.h" />
     <ClInclude Include="..\test\test_sock.h" />
+    <ClInclude Include="..\test\test_lua.h" />
   </ItemGroup>
 </Project>

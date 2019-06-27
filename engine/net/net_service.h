@@ -53,7 +53,7 @@ public:
 	bool KickSession(int SessionID, SOCKET socket);
 	bool OnSessionDrop(BaseSession *pSession);
 private:
-#ifndef WIN32
+#ifndef _WIN32
 	struct epoll_event m_Events[MAX_SOCK_EVENT];
 #endif
 	SOCKHANDLE m_ServiceHandle;

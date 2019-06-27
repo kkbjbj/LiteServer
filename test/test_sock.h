@@ -1,37 +1,32 @@
 #pragma once
 #include "unit_test_base.h"
 
-#ifdef WIN32
-	#pragma comment(lib, "ws2_32.lib")
-	#pragma comment(lib, "Mswsock.lib")
-#endif
-
 class TestNetCallBack : public NetEventCallBack
 {
 public:
 	virtual bool OnAddConnection(int SessionID, SOCKET Sock, std::string IP, int Port)
 	{
-		printf("OnAddConnection Session:%d Sock:%d IP:%s, Port:%d\n", SessionID, Sock, IP.c_str(), Port);
+		printf("OnAddConnection Session:%d Sock:%d IP:%s, Port:%d\n", SessionID, (int)Sock, IP.c_str(), Port);
 		return true;
 	}
 	virtual bool OnConnectionDrop(int SessionID, SOCKET Sock)
 	{
-		printf("OnConnectionDrop Session:%d Sock:%d \n", SessionID, Sock);
+		printf("OnConnectionDrop Session:%d Sock:%d \n", SessionID, (int)Sock);
 		return true;
 	}
 	virtual bool OnConnected(int SessionID, SOCKET Sock)
 	{
-		printf("OnConnected Session:%d Sock:%d \n", SessionID, Sock);
+		printf("OnConnected Session:%d Sock:%d \n", SessionID, (int)Sock);
 		return true;
 	}
 	virtual bool OnConnectFail(int SessionID, SOCKET Sock)
 	{
-		printf("OnConnectFail Session:%d Sock:%d \n", SessionID, Sock);
+		printf("OnConnectFail Session:%d Sock:%d \n", SessionID, (int)Sock);
 		return true;
 	}
 	virtual bool OnData(int SessionID, SOCKET Sock, char *Data, int size)
 	{
-		printf("OnData Session:%d Sock:%d size:%d %s\n", SessionID, Sock, size, Data);
+		printf("OnData Session:%d Sock:%d size:%d %s\n", SessionID, (int)Sock, size, Data);
 		return true;
 	}
 	virtual bool OnUpdate() { return true; }
@@ -82,9 +77,9 @@ public:
 			}
 			else
 			{			
-				listener2.GetSock()->SendTo(c.c_str(), c.length() + 1, "127.0.0.1", 8091);
-				connector.GetSock()->Send(c.c_str(), c.length() + 1);
-				connector2.GetSock()->Send(c.c_str(), c.length() + 1);
+				listener2.GetSock()->SendTo(c.c_str(), (int)c.length() + 1, "127.0.0.1", 8091);
+				connector.GetSock()->Send(c.c_str(), (int)c.length() + 1);
+				connector2.GetSock()->Send(c.c_str(), (int)c.length() + 1);
 			}
 
 		}

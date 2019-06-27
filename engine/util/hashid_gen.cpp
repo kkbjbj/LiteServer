@@ -84,7 +84,7 @@ int HashIDGenerator::Remove(int id)
 		node->id = -1;
 		node->next = NULL;
 		--m_nCount;
-		return node - m_pIDList;
+		return int(node - m_pIDList);
 	}
 
 	while(node->next)
@@ -97,7 +97,7 @@ int HashIDGenerator::Remove(int id)
 			cur->id = -1;
 			cur->next = NULL;
 			--m_nCount;
-			return cur - m_pIDList;
+			return int(cur - m_pIDList);
 		}
 		node = node->next;
 	}
@@ -112,7 +112,7 @@ int HashIDGenerator::Find(int id)
 	{
 		if (node->id == id)
 		{
-			return node - m_pIDList;
+			return int(node - m_pIDList);
 		}
 		node = node->next;
 	}

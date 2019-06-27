@@ -8,12 +8,14 @@ TARGET	:= libengine.a
 
 RM 	= rm -f
 
-INCLUDE += -I./
+INCLUDE += -I./ -I../include -I../include/linux
 
 SOURCE += $(wildcard util/*.cpp)
 SOURCE += $(wildcard thread/*.cpp)
 SOURCE += $(wildcard timer/*.cpp)
 SOURCE += $(wildcard net/*.cpp)
+SOURCE += $(wildcard lua/*.cpp)
+SOURCE += $(wildcard db/*.cpp)
 
 OBJS_DEF   := $(patsubst %.cpp,%.o,$(SOURCE))
 

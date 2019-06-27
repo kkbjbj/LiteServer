@@ -6,7 +6,7 @@
 #include "udp_listener.h"
 #include "udp_session.h"
 
-#ifndef WIN32
+#ifndef _WIN32
 
 
 bool NetService::Init(NetEventCallBack *pCallBack)
@@ -376,4 +376,4 @@ void NetService::SendWorker()
 	}
 }
 
-#endif // WIN32	
+#endif // _WIN32	

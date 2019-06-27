@@ -6,7 +6,7 @@
 #include "tcp_session.h"
 #include "udp_session.h"
 
-#ifdef WIN32
+#ifdef _WIN32
 
 
 
@@ -344,7 +344,7 @@ bool NetService::DoRead(TCPSession *pTcpSession, DWORD dwIoSize)
 	
 	if (0 == dwIoSize)
 	{
-		printf("Socket Closed by peer %d \n", pTcpSession->GetSocket());
+		printf("Socket Closed by peer %d \n", (int)pTcpSession->GetSocket());
 		OnSessionDrop(pTcpSession);
 		return true;
 	}
@@ -413,4 +413,4 @@ void NetService::SendWorker()
 
 }
 
-#endif // WIN32	
+#endif // _WIN32	

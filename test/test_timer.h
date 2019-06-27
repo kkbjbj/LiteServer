@@ -1,13 +1,6 @@
 #pragma once
 #include "unit_test_base.h"
 
-#ifdef _WIN32 
-#include <windows.h>
-//#pragma comment (lib, "ws2_32.lib")
-#else
-#include <unistd.h>
-#endif
-
 class TestCallBack : public TimerCallBack
 {
 public:
