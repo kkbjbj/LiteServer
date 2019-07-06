@@ -1,5 +1,8 @@
 #pragma once
+
+#include "cstdio"
 #include "unit_test_base.h"
+#include "lua/lua_util.h"
 
 class TestLuaBaseObj : public LuaWrapBase
 {
@@ -28,6 +31,7 @@ public:
 		int p1 = (int)lua_tointeger(L, -2);
 		int p2 = (int)lua_tointeger(L, -1) + p1 * p1;
 		lua_pushinteger(L, p2);
+
 		return 1;
 	}
 };
@@ -46,7 +50,22 @@ public:
 		luaL_openlibs(L);
 		LuaWrapExport<LuaObj>().Export(L);
 		LuaWrapExport<RedisConnectorWrap>().Export(L);
-		luaL_dofile(L, "test.lua");
+		if (luaL_dofile(L, "test.lua"))
+		{
+			LOG_ERROR("cannot load lua file: {0}\n", lua_tostring(L, -1));
+		}
+
+		int r;
+		int code = LuaUtil::CallLuaFuction(L,"TestCallLua", "ii>i", 2, 1, &r);
+		if(0 != code)
+		{
+			LOG_ERROR("CallLuaFuction Error return Code {0}\n", code);
+		}
+		else
+		{
+			LOG_ERROR("TestCallLua 2 * 2 + 1 = {0} \n", r);
+		}	
+		
 		lua_close(L);
 		return true;
 	}

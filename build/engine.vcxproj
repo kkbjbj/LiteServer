@@ -44,6 +44,7 @@
     <ClInclude Include="..\engine\db\redis_connector.h" />
     <ClInclude Include="..\engine\db\redis_connector_wrap.h" />
     <ClInclude Include="..\engine\engine.h" />
+    <ClInclude Include="..\engine\log\logger.h" />
     <ClInclude Include="..\engine\lua\luawrap.h" />
     <ClInclude Include="..\engine\lua\lua_util.h" />
     <ClInclude Include="..\engine\net\base_session.h" />
@@ -82,8 +83,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>

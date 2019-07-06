@@ -19,6 +19,9 @@
     <Filter Include="db">
       <UniqueIdentifier>{a61236f7-c989-4da6-aafe-817d7ac767a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="log">
+      <UniqueIdentifier>{64c17ca4-c81c-4afb-bd66-471d68a38fae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\util\hashid_gen.cpp">
@@ -170,6 +173,9 @@
     </ClInclude>
     <ClInclude Include="..\engine\lua\lua_util.h">
       <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\log\logger.h">
+      <Filter>log</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

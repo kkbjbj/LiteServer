@@ -17,5 +17,8 @@ public:
 	static bool GetBool(lua_State *L, int index);
 	static const char* GetString(lua_State *L, int index);
 	static void* GetUserData(lua_State *L, int index);
+
+	static int CallLuaFuction(lua_State *L, const char *func, const char *sig, ... );
+	static int Call(lua_State *L, const char *func, const char *sig, va_list &vl);
 };
 

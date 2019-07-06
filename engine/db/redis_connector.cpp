@@ -4,7 +4,7 @@ RedisConnector::RedisConnector()
 :m_pRedisContext(NULL)
 ,m_pRedisReply(NULL)
 {
-
+	m_strWrapName = "RedisConnectorWrap";
 }
 
 RedisConnector::~RedisConnector()

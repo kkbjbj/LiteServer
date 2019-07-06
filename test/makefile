@@ -9,7 +9,7 @@ RM 	= rm -f
 
 INCLUDE += -I../include -I../include/linux -I../engine
 
-LIB += -L../lib -lengine -llua -ldl -lhiredis
+LIB += -L../lib -lengine -lluajit -ldl -lhiredis
 
 SOURCE += $(wildcard *.cpp)
 OBJS_DEF   := $(patsubst %.cpp,%.o,$(SOURCE))
